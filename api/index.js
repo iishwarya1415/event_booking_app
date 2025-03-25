@@ -6,6 +6,7 @@ dotenv.config();
 import cookieParser from "cookie-parser";
 import { register, login, logout, getMe } from "../api/routes/auth.js";
 import { requireAuth } from "../api/middleware/requireAuth.js";
+import {getAllEvents, getEventsById} from "../api/routes/events.js";
 import {ping} from "../api/routes/ping.js";
 
 const app = express();
@@ -21,6 +22,9 @@ app.post("/login", login);
 app.post("/logout", logout);
 app.get("/me", requireAuth, getMe);
 app.get("/ping",ping);
+app.get("/events/:id",getEventsById);
+app.get("/events",getAllEvents);
+
 
 export default app;
 app.listen(8000, () => {
