@@ -9,6 +9,8 @@ import { requireAuth } from "../api/middleware/requireAuth.js";
 import {getAllEvents, getEventsById} from "../api/routes/events.js";
 import {ping} from "../api/routes/ping.js";
 
+import { getAllBookings,getBookingById,createBooking,updateBooking,deleteBooking } from "../api/routes/bookings.js";  
+
 const app = express();
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.urlencoded({ extended: true }));
@@ -25,6 +27,12 @@ app.get("/ping",ping);
 app.get("/events/:id",getEventsById);
 app.get("/events",getAllEvents);
 
+
+app.post("/bookings", requireAuth, createBooking)
+app.get("/bookings", requireAuth, getAllBookings)
+app.get("/bookings/:id", getBookingById)
+app.put("/bookings/:id", updateBooking)
+app.delete("/bookings/:id", deleteBooking)
 
 export default app;
 app.listen(8000, () => {
