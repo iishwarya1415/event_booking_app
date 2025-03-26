@@ -2,6 +2,7 @@
 import prisma from "../prisma/client.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
 export const register = async (req, res) =>  {
     const { email, password, name } = req.body;
     const existingUser = await prisma.users.findUnique({ where: { email } });
@@ -15,6 +16,11 @@ export const register = async (req, res) =>  {
       data: { email, password: hashedPassword, username:name, updated_at:now },
       select: { id: true, email: true, username: true },
     });
+
+    const payload = { userId: newUser.id };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "15m" });
+    res.cookie("token", token, { httpOnly: true, maxAge: 15 * 60 * 1000 });
+    
     res.json(newUser);
   };
   
