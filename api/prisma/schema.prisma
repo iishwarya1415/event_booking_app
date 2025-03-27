@@ -9,6 +9,42 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+
+model Events {
+  id       Int       @id @default(autoincrement())
+  title    String 
+  description String? @db.Text
+  event_date     DateTime
+  venue_name String
+  venue_address String
+  tickets_available Int @default(0)
+  created_at DateTime @default(now())
+  updated_at DateTime
+  bookings Bookings[]
+}
+
+model Users {
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  password String
+  username     String?
+  created_at DateTime @default(now())
+  updated_at DateTime
+  bookings  Bookings[]
+}
+
+model Bookings {
+  id       Int       @id @default(autoincrement())
+  users Users @relation(fields: [user_id], references: [id])
+  user_id Int
+  events Events @relation(fields: [event_id], references: [id])
+  event_id Int
+  tickets_count Int
+  booking_date DateTime
+  created_at DateTime @default(now())
+  updated_at DateTime
 }
