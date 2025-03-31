@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import EventDetail from './pages/EventDetail';
 import Checkout from './pages/Checkout'; // Import Checkout page if needed
-import BookingsPage from './pages/BookingsPage'; // Import Bookings Page if needed
+import BookingDetail from './pages/BookingDetail';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/events/:id" element={<EventDetail />} />
           <Route path="/checkout" element={<Checkout />} /> {/* Add the checkout route */}
-          <Route path="/bookings/:id" element={<BookingsPage />} /> {/* Add the bookings route */}
+          <Route path="/bookings/:id" element={<BookingDetail />} /> {/* Add the bookings route */}
         </Routes>
       </div>
     </Router>
