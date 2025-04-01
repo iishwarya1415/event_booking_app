@@ -5,11 +5,13 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^2.0.15",
     "prisma": "^5.19.1"
   },
   "dependencies": {
@@ -19,7 +21,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.21.0",
+    "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0"
   }
