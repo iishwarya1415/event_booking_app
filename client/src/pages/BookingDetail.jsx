@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate,useLocation } from 'react-router-dom';
 
 const BookingDetail = () => {
   const { id } = useParams();
-  const [booking, setBooking] = useState(null);
+  const location = useLocation();
+  const [booking, setBooking] = useState(location.state?.booking || null);
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchBooking = async () => {
       try {
-        const response = await axios.get(`/api/bookings/${id}`);
+        const response = await axios.get(`/bookings/${id}`);
         setBooking(response.data);
       } catch (error) {
         console.error('Error fetching booking details', error);
@@ -53,7 +53,7 @@ const BookingDetail = () => {
   return (
     <div>
       <h1>Booking Details</h1>
-      <p>Event: {booking.event.title}</p>
+      <p>Event: {booking.events.title}</p>
       <p>Tickets: {booking.tickets_count}</p>
       <p>Booking Date: {new Date(booking.booking_date).toLocaleString()}</p>
 
