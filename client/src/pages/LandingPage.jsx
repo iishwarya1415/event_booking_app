@@ -12,7 +12,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('/api/events'); // Fetch all events from API
+        const response = await axios.get('http://localhost:8000/events'); // Fetch all events from API
         setEvents(response.data); // Store the events data in state
       } catch (error) {
         console.error('Error fetching events:', error);
