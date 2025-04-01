@@ -22,3 +22,5 @@ const registerUser = async (userData) => {
     console.error('Error registering user:', error);
   }
 };
+
+export default axios;

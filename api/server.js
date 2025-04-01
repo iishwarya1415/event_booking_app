@@ -23,8 +23,8 @@ app.get("/ping", (req, res) => {
 });
 
 // Event routes
-app.get("/events", getAllEvents);        // Route to get all events
-app.get("/events/:id", getEventsById);   // Route to get a specific event by ID
+app.get("/events", getAllEvents);        
+app.get("/events/:id", getEventsById);   
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port} 🎉 🚀`);
