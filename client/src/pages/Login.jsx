@@ -9,7 +9,9 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post('/login', { email, password });
+      const response = await api.post('/login', { email, password },{
+        withCredentials: true // Ensure credentials (cookies) are included
+      });
       console.log('Login success:', response.data);
       setError('');
     } catch (err) {
