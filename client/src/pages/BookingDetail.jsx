@@ -10,7 +10,7 @@ const BookingDetail = () => {
   useEffect(() => {
     const fetchBooking = async () => {
       try {
-        const response = await axios.get(`/bookings/${id}`);
+        const response = await axios.get(`/bookings/${id}`,{ withCredentials: true });
         setBooking(response.data);
       } catch (error) {
         console.error('Error fetching booking details', error);
@@ -22,7 +22,7 @@ const BookingDetail = () => {
 
   const handleCancelBooking = async () => {
     try {
-      await axios.delete(`/api/bookings/${id}`);
+      await axios.delete(`/bookings/${id}`,{ withCredentials: true });
       alert('Booking canceled');
       navigate('/dashboard'); // Redirect to dashboard after cancellation
     } catch (error) {
@@ -39,7 +39,7 @@ const BookingDetail = () => {
     }
 
     try {
-      await axios.put(`/api/bookings/${id}`, { tickets_count: newTicketCount });
+      await axios.put(`/bookings/${id}`, { tickets_count: parseInt(newTicketCount) },{ withCredentials: true });
       alert('Booking updated');
       navigate('/dashboard'); // Redirect to dashboard after updating booking
     } catch (error) {
@@ -53,7 +53,7 @@ const BookingDetail = () => {
   return (
     <div>
       <h1>Booking Details</h1>
-      <p>Event: {booking.events.title}</p>
+      <p>Event: {booking.title}</p>
       <p>Tickets: {booking.tickets_count}</p>
       <p>Booking Date: {new Date(booking.booking_date).toLocaleString()}</p>
 

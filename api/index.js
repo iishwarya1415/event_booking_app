@@ -30,9 +30,9 @@ app.get("/events",getAllEvents);
 
 app.post("/bookings", requireAuth, createBooking)
 app.get("/bookings", requireAuth, getAllBookings)
-app.get("/bookings/:id", getBookingById)
-app.put("/bookings/:id", updateBooking)
-app.delete("/bookings/:id", deleteBooking)
+app.get("/bookings/:id",requireAuth, getBookingById)
+app.put("/bookings/:id",requireAuth, updateBooking)
+app.delete("/bookings/:id",requireAuth, deleteBooking)
 
 export default app;
 app.listen(8000, () => {

@@ -3,7 +3,9 @@ import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 // Checkout component: Allows insertion of a new booking by connecting to the POST endpoint.
-const Checkout = ({ event, user }) => {
+const Checkout = ({ user }) => {
+  const location = useLocation();
+  const event = location.state?.event;
   const [ticketCount, setTicketCount] = useState(1); // Default to 1 ticket
   const navigate = useNavigate();
 
@@ -20,8 +22,10 @@ const Checkout = ({ event, user }) => {
         withCredentials: true // Set here to include cookies in the request
       });
       alert('Booking successful!');
+      const booking_data = response.data;
+      booking_data.title = event.title;
       navigate(`/bookings/${response.data.id}`,{
-        state: { booking: response.data }, // Pass the booking data
+        state: { booking: booking_data }, // Pass the booking data
       }); // Navigate to the booking details page
     } catch (error) {
       console.error('Error during booking', error);
