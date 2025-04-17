@@ -4,6 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const register = async (req, res) =>  {
+    const secure = process.env.SECURE == "true"
     const { email, password, name } = req.body;
     const existingUser = await prisma.users.findUnique({ where: { email } });
     if (existingUser) {
@@ -19,19 +20,19 @@ export const register = async (req, res) =>  {
 
     const payload = { userId: newUser.id };
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "15m" });
-    res.cookie("token", token, { httpOnly: true, maxAge: 15 * 60 * 1000 ,secure: true,});
+    res.cookie("token", token, { httpOnly: true, maxAge: 15 * 60 * 1000 ,secure: secure});
     
     res.json(newUser);
   };
   
   export const login = async (req, res) => {
+    const secure = process.env.SECURE == "true"
     const { email, password } = req.body;
     const user = await prisma.users.findUnique({ where: { email } });
     if (!user) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
-    // password: 123456 
-    // user.password: $2b$10$naV1eAwirV13nyBYVS96W..52QzN8U/UQ7mmi/IEEVJDtCAdDmOl2
+    
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) {
       return res.status(401).json({ error: "Invalid credentials" });
@@ -39,7 +40,7 @@ export const register = async (req, res) =>  {
   
     const payload = { userId: user.id };
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "15m" });
-    res.cookie("token", token, { httpOnly: true, maxAge: 15 * 60 * 1000 });
+    res.cookie("token", token, { httpOnly: true, maxAge: 15 * 60 * 1000,secure: secure });
   
     // ensure that the password is not sent to the client
     const userData = {
