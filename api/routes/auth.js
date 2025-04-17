@@ -19,7 +19,7 @@ export const register = async (req, res) =>  {
 
     const payload = { userId: newUser.id };
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "15m" });
-    res.cookie("token", token, { httpOnly: true, maxAge: 15 * 60 * 1000 });
+    res.cookie("token", token, { httpOnly: true, maxAge: 15 * 60 * 1000 ,secure: true,});
     
     res.json(newUser);
   };
