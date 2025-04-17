@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Set base URL for all axios requests
-axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.baseURL = import.meta.env.VITE_API_URL|| 'http://localhost:8080';
 
 // Example: Fetch all events
 const fetchEvents = async () => {
