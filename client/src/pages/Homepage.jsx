@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 const Homepage = () => {
   return (
     <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>Welcome to the Event Booking System</h1>
+      <h1>Welcome to ShowBuzz</h1>
+      <h4>Your Ultimate Destination for Discovering and Booking Events</h4>
       <p>
-        Discover and book tickets for the latest events in your area. Our platform provides an easy, secure,
+        Discover and book tickets for the latest events in your area. Our platform provides an easy, secure
         and fast way to explore upcoming events and manage your bookings.
       </p>
       <div style={{ marginTop: '1.5rem' }}>
