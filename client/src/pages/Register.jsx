@@ -11,7 +11,7 @@ function Register() {
     e.preventDefault();
     try {
       // Try sending to the /api/register endpoint.
-      const response = await api.post('http://localhost:8000/register', { name: username, email, password });
+      const response = await api.post('/register', { name: username, email, password });
       console.log('Registration success:', response.data);
       setError('');
     } catch (err) {

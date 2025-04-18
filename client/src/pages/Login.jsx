@@ -14,6 +14,7 @@ function Login() {
       });
       console.log('Login success:', response.data);
       setError('');
+      navigate('/dashboard');
     } catch (err) {
       setError('Invalid credentials');
     }
