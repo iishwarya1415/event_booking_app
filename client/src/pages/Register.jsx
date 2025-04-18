@@ -6,6 +6,7 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate(); 
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -14,6 +15,7 @@ function Register() {
       const response = await api.post('/register', { name: username, email, password });
       console.log('Registration success:', response.data);
       setError('');
+      navigate('/dashboard');
     } catch (err) {
       // Log detailed error info from the server response if available.
       console.error("Registration error:", err.response ? err.response.data : err.message);
