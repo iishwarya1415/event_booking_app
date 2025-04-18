@@ -30,7 +30,7 @@ body {
   min-height: 100vh;
 
   background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-  url("src/pages/bg1.jpg") center / cover no-repeat fixed;
+  url("/bg1.jpg") center / cover no-repeat fixed;
 
   
 }
@@ -237,7 +237,7 @@ body {
   min-height: 100vh;
 
   background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
-  url("src/pages/bg1.jpg") center / cover no-repeat fixed;
+  url("/bg1.jpg") center / cover no-repeat fixed;
 
   
 }
