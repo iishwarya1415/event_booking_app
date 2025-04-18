@@ -12,7 +12,6 @@ function App() {
   return (
     <Router>
       <div>
-        <h1>Event Booking System</h1>
         <Routes>
           {/* Default route: Public Homepage */}
           <Route path="/" element={<Homepage />} />

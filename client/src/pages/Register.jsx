@@ -11,7 +11,7 @@ function Register() {
     e.preventDefault();
     try {
       // Try sending to the /api/register endpoint.
-      const response = await api.post('/register', { name: username, email, password });
+      const response = await api.post('http://localhost:8000/register', { name: username, email, password });
       console.log('Registration success:', response.data);
       setError('');
     } catch (err) {
@@ -22,8 +22,9 @@ function Register() {
   };
 
   return (
-    <div>
-      <h1>Register</h1>
+    <div className="register-wrapper">
+      <div className="register-card">
+      <h1>Register Here</h1>
       <form onSubmit={handleRegister}>
         <input
           type="text"
@@ -48,7 +49,8 @@ function Register() {
         />
         <button type="submit">Register</button>
       </form>
-      {error && <p>{error}</p>}
+      {error && <p className="error-msg">{error}</p>}
+    </div>
     </div>
   );
 }
