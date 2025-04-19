@@ -34,13 +34,15 @@ const Checkout = ({ user }) => {
   };
 
   return (
-    <div>
+      <div className="checkout-wrapper">
+      <div className="checkout-card">
       {/* Added title for the checkout page */}
       <h1>Checkout Page</h1>
       
       <h2>Checkout for {event.title}</h2>
-      <p>Venue: {event.venue_name}</p>
-      <p>Date: {new Date(event.event_date).toLocaleString()}</p>
+      <p className="venue-line"><strong>Venue:</strong> {event.venue_name}</p>
+      <p className="date-line"><strong>Date:</strong> {new Date(event.event_date).toLocaleString()}</p>
+
 
       <div>
         <label>Tickets: </label>
@@ -53,6 +55,7 @@ const Checkout = ({ user }) => {
       </div>
 
       <button onClick={handleCheckout}>Complete Booking</button>
+    </div>
     </div>
   );
 };

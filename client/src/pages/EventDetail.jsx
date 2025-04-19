@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MapContainer from './MapContainer';
-import { useParams, useNavigate } from 'react-router-dom';  // To access the event id from the URL
+import { useParams, useNavigate } from 'react-router-dom';
 import api from '../axios';
 
 function EventDetail() {
@@ -21,24 +21,28 @@ function EventDetail() {
   }, [id]);
 
   if (!event) return <div>Loading...</div>;
+
   const address = event.venue_address;
-  
+  const formattedDate = new Date(event.event_date).toLocaleDateString('en-US', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+
   const handleCheckout = () => {
-    console.log("Navigating to checkout with event:", event);
     navigate('/checkout', { state: { event } });
   };
 
   return (
-    <div>
-      <h1>{event.title}</h1>
-      <p>{event.description}</p>
-      <p>Venue: {event.venue_name}</p>
-      <p>Date: {event.event_date}</p>
+    <div className="event-wrapper">
+      <div className="event-card">
+        <h1>{event.title}</h1>
+        <p className="venue-line"><strong>Venue:</strong> {event.venue_name}</p>
+        <p className="date-line"><strong>Date:</strong> {formattedDate}</p>
+        <p><strong>Google Map for:</strong> {address}</p>
 
-      <h2>Google Map for: {address}</h2>
-    <MapContainer address={address} />
+        <MapContainer address={address} />
 
-      <button onClick={handleCheckout}>Book Now</button>
+        <button onClick={handleCheckout}>Book Now</button>
+      </div>
     </div>
   );
 }
