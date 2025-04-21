@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 
-// Checkout component: Allows insertion of a new booking by connecting to the POST endpoint.
-const Checkout = ({ user }) => {
+const Checkout = () => {
   const location = useLocation();
   const event = location.state?.event;
-  const [ticketCount, setTicketCount] = useState(1); // Default to 1 ticket
+  const [ticketCount, setTicketCount] = useState(1);
   const navigate = useNavigate();
 
   const handleTicketCountChange = (e) => {
@@ -15,48 +14,82 @@ const Checkout = ({ user }) => {
 
   const handleCheckout = async () => {
     try {
+      console.log("Event object at checkout:", event);
+      console.log("Submitting booking with:", {
+        event_id: event?.id,
+        tickets_count: ticketCount
+      });
+
       const response = await axios.post('/bookings', {
         event_id: event.id,
         tickets_count: ticketCount,
-      },{
-        withCredentials: true // Set here to include cookies in the request
+      }, {
+        withCredentials: true
       });
+
       alert('Booking successful!');
       const booking_data = response.data;
       booking_data.title = event.title;
-      navigate(`/bookings/${response.data.id}`,{
-        state: { booking: booking_data }, // Pass the booking data
-      }); // Navigate to the booking details page
+
+      navigate(`/bookings/${response.data.id}`, {
+        state: { booking: booking_data }
+      });
     } catch (error) {
-      console.error('Error during booking', error);
-      alert('Failed to complete booking');
+      console.error('Booking failed:', error.response?.data || error.message);
+      alert(
+        'Failed to complete booking: ' +
+        (error.response?.data?.message || error.message)
+      );
     }
   };
 
+  // Safeguard: If event is missing
+  if (!event) {
+    return (
+      <p style={{ textAlign: 'center', marginTop: '100px' }}>
+        No event found for checkout.
+      </p>
+    );
+  }
+
   return (
-      <div className="checkout-wrapper">
-      <div className="checkout-card">
-      {/* Added title for the checkout page */}
-      <h1>Checkout Page</h1>
-      
-      <h2>Checkout for {event.title}</h2>
-      <p className="venue-line"><strong>Venue:</strong> {event.venue_name}</p>
-      <p className="date-line"><strong>Date:</strong> {new Date(event.event_date).toLocaleString()}</p>
+    <>
+      {/* Navigation Bar */}
+      <nav className="navbar">
+        <div className="navbar-logo">EventBook</div>
+        <ul className="navbar-links">
+          <li><Link to="/dashboard">Home</Link></li>
+          <li><Link to={`/events/${event.id}`}>Event Details</Link></li>
+          <li><Link to="/logout">Logout</Link></li>
+        </ul>
+      </nav>
 
+      <div className="checkout-wrapper" style={{ marginTop: '90px' }}>
+        <div className="checkout-card">
+          <h1>Checkout Page</h1>
+          <h2>Checkout for {event.title}</h2>
+          <p className="venue-line"><strong>Venue:</strong> {event.venue_name}</p>
+          <p className="date-line">
+            <strong>Date:</strong>{' '}
+            {event.event_date
+              ? new Date(event.event_date).toLocaleString()
+              : 'Date not available'}
+          </p>
 
-      <div>
-        <label>Tickets: </label>
-        <input
-          type="number"
-          value={ticketCount}
-          onChange={handleTicketCountChange}
-          min="1"
-        />
+          <div>
+            <label>Tickets: </label>
+            <input
+              type="number"
+              value={ticketCount}
+              onChange={handleTicketCountChange}
+              min="1"
+            />
+          </div>
+
+          <button onClick={handleCheckout}>Complete Booking</button>
+        </div>
       </div>
-
-      <button onClick={handleCheckout}>Complete Booking</button>
-    </div>
-    </div>
+    </>
   );
 };
 

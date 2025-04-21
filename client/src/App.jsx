@@ -7,6 +7,7 @@ import LandingPage from './pages/LandingPage.jsx';
 import EventDetail from './pages/EventDetail.jsx';
 import Checkout from './pages/Checkout.jsx';
 import BookingDetail from './pages/BookingDetail.jsx';
+import Logout from './pages/Logout.jsx';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/events/:id" element={<EventDetail />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/bookings/:id" element={<BookingDetail />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
       </div>
     </Router>

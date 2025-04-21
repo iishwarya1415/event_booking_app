@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import MapContainer from './MapContainer';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import api from '../axios';
 
 function EventDetail() {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const fetchEvent = async () => {
       try {
@@ -32,18 +32,30 @@ function EventDetail() {
   };
 
   return (
-    <div className="event-wrapper">
-      <div className="event-card">
-        <h1>{event.title}</h1>
-        <p className="venue-line"><strong>Venue:</strong> {event.venue_name}</p>
-        <p className="date-line"><strong>Date:</strong> {formattedDate}</p>
-        <p><strong>Google Map for:</strong> {address}</p>
+    <>
+      {/* Navigation Bar */}
+      <nav className="navbar">
+        <div className="navbar-logo">EventBook</div>
+        <ul className="navbar-links">
+          <li><Link to="/dashboard">Home</Link></li>
+          <li><Link to="/logout">Logout</Link></li>
+        </ul>
+      </nav>
 
-        <MapContainer address={address} />
+      {/* Event Detail Content */}
+      <div className="event-wrapper" style={{ marginTop: '90px' }}>
+        <div className="event-card">
+          <h1>{event.title}</h1>
+          <p className="venue-line"><strong>Venue:</strong> {event.venue_name}</p>
+          <p className="date-line"><strong>Date:</strong> {formattedDate}</p>
+          <p><strong>Google Map for:</strong> {address}</p>
 
-        <button onClick={handleCheckout}>Book Now</button>
+          <MapContainer address={address} />
+
+          <button onClick={handleCheckout}>Book Now</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
