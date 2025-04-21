@@ -73,7 +73,7 @@ export const createBooking = async (req, res) => {
   };
   export const updateBooking = async (req, res) => {
     const { id } = req.params;
-    const { tickets_count } = parseInt(req.body);
+    const { tickets_count } = req.body;
     const userId = req.userId;
   
     // Find the booking to update
@@ -99,14 +99,15 @@ export const createBooking = async (req, res) => {
     }
   console.log (event.tickets_available)
   console.log (booking.tickets_count)
-  console.log (tickets_count)
+  console.log (typeof tickets_count)
 
     // Update the booking
     const updatedBooking = await prisma.bookings.update({
       where: { id: parseInt(id) },
       data: { tickets_count },
     });
-  
+    
+    // tickets_available = 
     // Update the event's available tickets
     await prisma.events.update({
       where: { id: event.id },
