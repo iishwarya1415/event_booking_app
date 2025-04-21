@@ -45,47 +45,6 @@ This as a SaaS-style application using **React** for the front end, **Node.js + 
 | **Logout**       | `/bookings/:id`  | Auth Required  | After logging out it redirects to the Home Page          |
 | **Checkout**     | `/checkout`      | Auth Required  | Book tickets for an event  
 
-## 🗄️ Database Structure
-
-We have 3 main tables:
-
-### 👤 `users`
-
-| Column         | Type      | Description                     |
-|----------------|-----------|---------------------------------|
-| `id`           | integer   | Unique user ID (primary key)    |
-| `email`        | varchar   | User login email (unique)       |
-| `username`     | varchar   | Chosen display name             |
-| `password_hash`| bytea     | Hashed password                 |
-
----
-
-### 🎫 `events`
-
-| Column            | Type      | Description                            |
-|-------------------|-----------|----------------------------------------|
-| `id`              | integer   | Unique event ID                        |
-| `title`           | varchar   | Name of the event                      |
-| `description`     | text      | Event description                      |
-| `event_date`      | timestamp | Date & time of the event               |
-| `venue_name`      | varchar   | Venue name                             |
-| `venue_address`   | varchar   | Venue location                         |
-| `tickets_available` | integer | Number of tickets available            |
-
----
-
-### 🧾 `bookings`
-
-| Column          | Type      | Description                                |
-|-----------------|-----------|--------------------------------------------|
-| `id`            | integer   | Unique booking ID                          |
-| `user_id`       | integer   | Linked to a user (foreign key)             |
-| `event_id`      | integer   | Linked to an event (foreign key)           |
-| `tickets_count` | integer   | Number of tickets booked                   |
-
-> A single user can have many bookings, and each booking is tied to one event.
-
----
 
 ## 🚀 Deployment
 
