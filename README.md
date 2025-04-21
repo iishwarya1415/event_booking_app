@@ -50,8 +50,6 @@ This as a SaaS-style application using **React** for the front end, **Node.js + 
 
 This project has been fully deployed and is available online:
 
-| Component | URL |
-|----------|-----|
 | 🖥️ **Frontend** (React) https://eventbookingapp-six.vercel.app/ 
 | 🛠 **Backend API** (Node.js) https://event-booking-app-gd8i.onrender.com
 | 🗄 **Database** (PostgreSQL) postgresql://eventbookingdb_user:N2Jypg5UqSxvap3opAhSXsak7eH73FCj@dpg-d003guqli9vc739gt01g-a.virginia-postgres.render.com/eventbookingdb
