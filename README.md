@@ -23,7 +23,7 @@ This as a SaaS-style application using **React** for the front end, **Node.js + 
 
 ---
 
-## 🧠 How It Works (Technically)
+## 🧠 How It Works 
 
 - React handles all the routing and views (landing, login, event detail, etc.)
 - Prisma connects the backend to a PostgreSQL database
@@ -75,36 +75,6 @@ We have 3 main tables:
 
 ---
 
-## 🌍 Pages & Features Overview
-
-| Page             | Path            | Access         | What It Does                             |
-|------------------|------------------|----------------|------------------------------------------|
-| **Landing Page** | `/`              | Public         | Browse all events                        |
-| **Event Details**| `/events/:id`    | Public         | View event info + map                    |
-| **Login**        | `/login`         | Public         | Secure user login                        |
-| **Register**     | `/register`      | Public         | Create a new account                     |
-| **Dashboard**    | `/dashboard`     | Auth Required  | View your profile and bookings           |
-| **Bookings**     | `/bookings/:id`  | Auth Required  | View, edit, or cancel a booking          |
-| **Checkout**     | `/checkout`      | Auth Required  | Book tickets for an event                |
-
----
-
-## ⚙️ APIs Used
-
-- `POST /api/auth/login` – Login user
-- `POST /api/auth/register` – Register user
-- `POST /api/auth/logout` – Logout user
-- `GET /api/users/:id` – Get user profile
-- `GET /api/events` – Get all events
-- `GET /api/events/:id` – Get specific event
-- `POST /api/bookings` – Create a booking
-- `GET /api/bookings` – View all your bookings
-- `GET /api/bookings/:id` – View one booking
-- `PUT /api/bookings/:id` – Update ticket quantity
-- `DELETE /api/bookings/:id` – Cancel a booking
-
----
-
 ## 🚀 Deployment
 
 This project has been fully deployed and is available online:
@@ -136,6 +106,6 @@ This project has been fully deployed and is available online:
 
 ### 📦 Client
 
-cd client
-npm install
+cd client,
+npm install,
 npm run dev
