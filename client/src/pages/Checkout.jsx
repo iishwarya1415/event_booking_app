@@ -9,7 +9,7 @@ const Checkout = () => {
   const navigate = useNavigate();
 
   const handleTicketCountChange = (e) => {
-    setTicketCount(e.target.value);
+    setTicketCount(Number(e.target.value));
   };
 
   const handleCheckout = async () => {
