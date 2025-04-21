@@ -97,9 +97,6 @@ export const createBooking = async (req, res) => {
     if (event.tickets_available + booking.tickets_count < tickets_count) {
       return res.status(400).json({ error: "Not enough tickets available" });
     }
-  console.log (event.tickets_available)
-  console.log (booking.tickets_count)
-  console.log (typeof tickets_count)
 
     // Update the booking
     const updatedBooking = await prisma.bookings.update({

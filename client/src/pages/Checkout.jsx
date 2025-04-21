@@ -14,12 +14,6 @@ const Checkout = () => {
 
   const handleCheckout = async () => {
     try {
-      console.log("Event object at checkout:", event);
-      console.log("Submitting booking with:", {
-        event_id: event?.id,
-        tickets_count: ticketCount
-      });
-
       const response = await axios.post('/bookings', {
         event_id: event.id,
         tickets_count: ticketCount,
