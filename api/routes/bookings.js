@@ -73,7 +73,7 @@ export const createBooking = async (req, res) => {
   };
   export const updateBooking = async (req, res) => {
     const { id } = req.params;
-    const { tickets_count } = req.body;
+    const { tickets_count } = parseInt(req.body);
     const userId = req.userId;
   
     // Find the booking to update
@@ -97,7 +97,10 @@ export const createBooking = async (req, res) => {
     if (event.tickets_available + booking.tickets_count < tickets_count) {
       return res.status(400).json({ error: "Not enough tickets available" });
     }
-  
+  console.log (event.tickets_available)
+  console.log (booking.tickets_count)
+  console.log (tickets_count)
+
     // Update the booking
     const updatedBooking = await prisma.bookings.update({
       where: { id: parseInt(id) },

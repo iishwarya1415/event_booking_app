@@ -778,3 +778,70 @@ form button {
   background-color: rgba(93, 28, 28, 0.1);
   color: #5d1c1c;
 }
+
+.booking-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 2rem;
+}
+
+.booking-card {
+  max-width: 600px;
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.booking-card h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #5d1c1c;
+}
+
+.booking-card p {
+  font-size: 1rem;
+  margin: 0.8rem 0;
+  color: #333;
+}
+
+.booking-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.update-btn,
+.cancel-btn {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.update-btn {
+  background-color: #1a73e8;
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #1558b0;
+}
+
+.cancel-btn {
+  background-color: #d93025;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #a5211a;
+}

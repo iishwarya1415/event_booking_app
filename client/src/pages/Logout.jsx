@@ -1,4 +1,3 @@
-// src/pages/Logout.jsx
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -9,25 +8,25 @@ const Logout = () => {
   useEffect(() => {
     const performLogout = async () => {
       try {
-        // Optional: clear session from backend
+        // Optional: clear session from server
         await axios.post('/logout', {}, { withCredentials: true });
 
-        // Clear any local storage or session data if used
+        // Clear local storage or session storage if used
         localStorage.clear();
 
-        // Redirect to homepage
+        // ✅ Immediately redirect to homepage
         navigate('/');
       } catch (error) {
         console.error('Logout failed:', error);
-        alert('Error during logout');
-        navigate('/');
+        alert('Logout failed');
+        navigate('/'); // still send to homepage
       }
     };
 
     performLogout();
   }, [navigate]);
 
-  return <p style={{ textAlign: 'center', marginTop: '100px' }}>Logging out...</p>;
+  return null; // No loading text, just instant redirect
 };
 
 export default Logout;
