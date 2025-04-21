@@ -21,7 +21,7 @@ export const register = async (req, res) =>  {
     const payload = { userId: newUser.id };
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "15m" });
     res.cookie("token", token, { httpOnly: true, maxAge: 15 * 60 * 1000,secure: secure,sameSite: "None" });
-    
+    console.log(res)
     res.json(newUser);
   };
   
@@ -41,7 +41,7 @@ export const register = async (req, res) =>  {
     const payload = { userId: user.id };
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: "15m" });
     res.cookie("token", token, { httpOnly: true, maxAge: 15 * 60 * 1000, secure: secure,sameSite: "None" });
-  
+    console.log(res)
     // ensure that the password is not sent to the client
     const userData = {
       id: user.id,
