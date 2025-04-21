@@ -32,6 +32,18 @@ This as a SaaS-style application using **React** for the front end, **Node.js + 
 - Bookings and events are linked via database relationships
 
 ---
+## 🌍 Pages & Features Overview
+
+| Page             | Path            | Access         | What It Does                             |
+|------------------|------------------|----------------|------------------------------------------|
+| **Home Page**    | `/`              | Public         | Overview of the app and page to Login and Register                        |
+| **Event Details**| `/events/:id`    | Public         | View events info                   |
+| **Login**        | `/login`         | Public         | Secure user login                        |
+| **Register**     | `/register`      | Public         | Create a new account                     |
+| **Landing Page**    | `/dashboard`     | Auth Required  | View all the events available          |
+| **Booking Details**     | `/bookings/:id`  | Auth Required  | View, edit, or cancel a booking          |
+| **Logout**       | `/bookings/:id`  | Auth Required  | After logging out it redirects to the Home Page          |
+| **Checkout**     | `/checkout`      | Auth Required  | Book tickets for an event  
 
 ## 🗄️ Database Structure
 
