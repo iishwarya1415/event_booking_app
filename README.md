@@ -54,9 +54,6 @@ This project has been fully deployed and is available online:
 
 | 🛠 **Backend API** (Node.js) https://event-booking-app-gd8i.onrender.com
 
-| 🗄 **Database** (PostgreSQL) postgresql://eventbookingdb_user:N2Jypg5UqSxvap3opAhSXsak7eH73FCj@dpg-d003guqli9vc739gt01g-a.virginia-postgres.render.com/eventbookingdb
-
-
 ---
 
 ## 🛠 Stack
